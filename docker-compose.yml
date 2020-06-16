@@ -5,7 +5,7 @@
 version: "3.2"
 
 services:
-  hc-docs:
+  cheatsheet:
     image: devops/cheatsheet
     restart: always
     container_name: cheatsheet
