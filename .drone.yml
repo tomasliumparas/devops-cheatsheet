@@ -1,0 +1,102 @@
+kind: pipeline
+type: docker
+name: build
+
+steps:
+
+- name: Lint docs
+  image: jdkato/vale
+  volumes:
+    - name: docker-socket
+      path: /var/run/docker.sock
+  failure: ignore
+  commands:
+    - wget https://github.com/errata-ai/Google/releases/download/v0.3.1/Google.zip
+    - mkdir .vale
+    - unzip Google.zip -d .vale -q
+    - vale --glob='!_*' docs
+
+- name: S2I build
+  image: getais/drone-plugin-s2i
+  volumes:
+    - name: docker-socket
+      path: /var/run/docker.sock
+  commands:
+    - s2i build ./ getais/s2i-httpd-24-mkdocs-centos7 devops/cheatsheet
+
+volumes:
+  - name: docker-socket
+    host:
+      path: /var/run/docker.sock
+
+---
+
+kind: pipeline
+type: docker
+name: run
+
+steps:
+- name: RUN docker image
+  image: docker/compose
+  volumes:
+    - name: docker-socket
+      path: /var/run/docker.sock
+  commands:
+    - docker-compose -p devops up -d --force-recreate
+
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: SLACK_WEBHOOK
+    channel:
+      from_secret: SLACK_CHANNEL
+    template: >
+      {{#success build.status}}
+        Build <{{build.link}}|{{repo.name}}/{{build.branch}}/#{{build.number}}> *succeeded* in {{since build.started}}
+        You can access documentation at:
+        <http://cheatsheet.getais.cloud/>
+      {{else}}
+        Build *failed* <{{build.link}}|{{repo.name}}/{{build.branch}}/#{{build.number}}> Elapsed: {{since build.started}}
+      {{/success}}
+  when:
+    status: [ success, failure ]
+
+
+volumes:
+  - name: docker-socket
+    host:
+      path: /var/run/docker.sock
+
+depends_on:
+- build
+
+---
+
+kind: pipeline
+type: docker
+name: push
+
+steps:
+- name: Push to internal
+  image: getais/drone-plugin-s2i
+  volumes:
+    - name: docker-socket
+      path: /var/run/docker.sock
+  environment:
+    DOCKER_USER:
+      from_secret: INTERNAL_REGISTRY_USER
+    DOCKER_TOKEN:
+      from_secret: INTERNAL_REGISTRY_TOKEN
+  commands:
+    - docker login -u $DOCKER_USER -p $DOCKER_TOKEN registry.getais.cloud
+    - docker tag devops/cheatsheet registry.getais.cloud/devops/cheatsheet
+    - docker push registry.getais.cloud/devops/cheatsheet
+
+volumes:
+  - name: docker-socket
+    host:
+      path: /var/run/docker.sock
+
+depends_on:
+- build

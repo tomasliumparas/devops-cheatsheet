@@ -1,0 +1,13 @@
+# Some tools to help with compose files:
+# https://composerize.com/
+# https://dockstation.io/
+
+version: "3.2"
+
+services:
+  hc-docs:
+    image: devops/cheatsheet
+    restart: always
+    container_name: cheatsheet
+    ports:
+      - 8081:8080
