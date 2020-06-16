@@ -3,7 +3,7 @@ repo_url: https://github.com/tomasliumparas/devops-cheatsheet
 theme:
   name: 'material'
   palette:
-    primary: 'teal'
+    primary: 'deep purple'
   font:
     text: 'Work Sans'
 plugins:
