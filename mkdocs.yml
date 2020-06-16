@@ -1,5 +1,5 @@
-site_name: HC Docs
-repo_url: https://github.com/tomasliumparas/docs-hc
+site_name: DevOps Cheatsheet
+repo_url: https://github.com/tomasliumparas/devops-cheatsheet
 theme:
   name: 'material'
   palette:
