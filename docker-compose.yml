@@ -10,4 +10,4 @@ services:
     restart: always
     container_name: cheatsheet
     ports:
-      - 8081:8080
+      - 8082:8080
