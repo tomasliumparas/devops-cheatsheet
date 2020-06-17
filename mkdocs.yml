@@ -9,7 +9,6 @@ theme:
 plugins:
     - search:
         prebuild_index: false
-    - git-revision-date-localized
 dev_addr: 0.0.0.0:80
 markdown_extensions:
   - codehilite
