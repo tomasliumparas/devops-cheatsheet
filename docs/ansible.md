@@ -1,3 +1,59 @@
+## Role tasks template
+
+```bash tab="defaults/main.yml"
+os_packages: []
+pip_packages: []
+```
+
+``` tab="tasks/main.yml"
+---
+# tasks file for example
+
+- name: Example prerequisites
+  include: prerequisites.yml
+  tags:
+    - example
+    - prerequisites
+
+- name: Example installation
+  include: installation.yml
+  tags:
+    - example
+    - installation
+
+- name: Example volume management
+  include: volumes.yml
+  tags:
+    - example
+    - volumes
+
+# CAUTION - Will REMOVE changes made and data
+- name: Example uninstallation
+  include: uninstallation.yml
+  tags:
+    - example
+    - uninstallation
+  when: uninstall_role|default(false)
+```
+
+```bash tab="prerequisites.yml"
+---
+# tasks file for example 
+
+- name: Install additional OS packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ os_packages }}"
+  loop_control:
+    label: "PACKAGE: {{ item }}"
+
+- name: Install additional pip packages
+  pip:
+    name: "{{ pip_packages }}"
+    state: latest
+```
+
 ## Reject items w\ empty key in the list
 
 ``` tab="Snippet"
