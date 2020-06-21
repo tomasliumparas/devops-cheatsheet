@@ -1,11 +1,11 @@
 ## Role tasks template
 
-```bash tab="defaults/main.yml"
+```yaml tab="defaults/main.yml"
 os_packages: []
 pip_packages: []
 ```
 
-``` tab="tasks/main.yml"
+```yaml tab="tasks/main.yml"
 ---
 # tasks file for example
 
@@ -36,7 +36,7 @@ pip_packages: []
   when: uninstall_role|default(false)
 ```
 
-```bash tab="prerequisites.yml"
+```yaml tab="prerequisites.yml"
 ---
 # tasks file for example 
 
@@ -56,11 +56,11 @@ pip_packages: []
 
 ## Reject items w\ empty key in the list
 
-``` tab="Snippet"
+```yaml tab="Snippet"
 rejectattr('nodes', 'none')
 ```
 
-```bash tab="Task"
+```yaml tab="Task"
 - name: Filter empty
   set_fact:
     clusters: "{{ clusterList | rejectattr('nodes', 'none') | list }}"
