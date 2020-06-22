@@ -75,3 +75,12 @@ rejectattr('nodes', 'none')
           - node2
           - node3
 ```
+
+## Special tags never
+
+```yaml tab="Task"
+- debug: msg='{{ showmevar}}'
+  tags: [ 'never', 'debug' ]
+```
+
+
