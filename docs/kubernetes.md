@@ -1,3 +1,9 @@
+## kubernetes.io Labels, Annotations and Taints
+
+* `topology.kubernetes.io/zone`
+* `topology.kubernetes.io/region`
+
+
 ## Clean stale kubelet mounts
 
 ``` tab="Command"
