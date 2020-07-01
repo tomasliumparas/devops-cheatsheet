@@ -1,7 +1,8 @@
 ## Export yaml files locally
 
-``` tab="Command"
-helm template --output-dir manifests -f values.yaml .
+``` bash tab="Command"
+export CHART=example-app
+helm template --output-dir manifests --release-name $CHART-f values.yaml .
 ```
 
 ```bash tab="Output"
