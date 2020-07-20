@@ -1,5 +1,3 @@
-# Cluster
-
 ## Settings
 ``` tab="curl"
 curl -XGET 0:9200/_cluster/settings
@@ -18,7 +16,7 @@ curl -XGET 0:9200/_cluster/health
 GET _cluster/health
 ```
 
-# Allocation
+## Allocation
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/allocation?v
@@ -28,7 +26,7 @@ curl -XGET 0:9200/_cat/allocation?v
 GET _cat/allocation?v
 ```
 
-## Nodes by disk usage
+### Nodes by disk usage
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/allocation?v&s=disk.percent:desc
@@ -38,7 +36,7 @@ curl -XGET 0:9200/_cat/allocation?v&s=disk.percent:desc
 GET /_cat/allocation?v&s=disk.percent:desc
 ```
 
-## Explain unassigned shards
+### Explain unassigned shards
 
 ``` tab="curl"
 curl -XGET 0:9200/_cluster/allocation/explain
@@ -48,7 +46,7 @@ curl -XGET 0:9200/_cluster/allocation/explain
 GET _cluster/allocation/explain
 ```
 
-# Nodes
+## Nodes
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/nodes?v
@@ -58,7 +56,7 @@ curl -XGET 0:9200/_cat/nodes?v
 GET _cat/nodes?v
 ```
 
-## Aattributes
+### Aattributes
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/nodeattrs
@@ -68,7 +66,7 @@ curl -XGET 0:9200/_cat/nodeattrs
 GET _cat/nodeattrs
 ```
 
-## Uptime
+### Uptime
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/nodes?v&h=ip,role,name,uptime,file_desc.percent&s=uptime
@@ -78,7 +76,7 @@ curl -XGET 0:9200/_cat/nodes?v&h=ip,role,name,uptime,file_desc.percent&s=uptime
 GET _cat/nodes?v&h=ip,role,name,uptime,file_desc.percent&s=uptime
 ```
 
-## Indexing perations
+### Indexing perations
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/nodes?v&h=ip,role,name,uptime,indexing.index_total,indexing.index_failed&s=uptime
@@ -88,7 +86,7 @@ curl -XGET 0:9200/_cat/nodes?v&h=ip,role,name,uptime,indexing.index_total,indexi
 GET _cat/nodes?v&h=ip,role,name,uptime,indexing.index_total,indexing.index_failed&s=uptime
 ```
 
-# Indices
+## Indices
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/indices?v
@@ -98,7 +96,7 @@ curl -XGET 0:9200/_cat/indices?v
 GET _cat/indices?v
 ```
 
-# By size
+### By size
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/indices?v&h=health,status,index,pri,rep,docs.count,store.size&s=store.size:desc
@@ -108,7 +106,7 @@ curl -XGET 0:9200/_cat/indices?v&h=health,status,index,pri,rep,docs.count,store.
 GET _cat/indices?v&h=health,status,index,pri,rep,docs.count,store.size&s=store.size:desc
 ```
 
-# Shards
+## Shards
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/shards?v
@@ -118,7 +116,7 @@ curl -XGET 0:9200/_cat/shards?v
 GET _cat/shards?v
 ```
 
-# By size
+### By size
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/shards?v&s=store:desc
