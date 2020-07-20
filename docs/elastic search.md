@@ -1,4 +1,6 @@
-## Settings
+## Cluster
+
+### Settings
 ``` tab="curl"
 curl -XGET 0:9200/_cluster/settings
 ```
@@ -7,7 +9,7 @@ curl -XGET 0:9200/_cluster/settings
 GET _cluster/settings
 ```
 
-## Health
+### Health
 ``` tab="curl"
 curl -XGET 0:9200/_cluster/health
 ```
