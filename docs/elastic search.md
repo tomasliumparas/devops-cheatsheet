@@ -126,7 +126,7 @@ curl -XGET 0:9200/_cat/shards?v&s=store:desc
 GET _cat/shards?v&s=store:desc
 ```
 
-# By state
+### By state
 
 ``` tab="curl"
 curl -XGET 0:9200/_cat/shards?h=index,shard,prirep,state,node,unassigned.reason&v&s=state
