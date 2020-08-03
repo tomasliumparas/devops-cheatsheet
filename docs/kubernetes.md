@@ -2,6 +2,7 @@
 
 * `topology.kubernetes.io/zone`
 * `topology.kubernetes.io/region`
+* `node-role.kubernetes.io/<role>`
 
 
 ## Clean stale kubelet mounts
