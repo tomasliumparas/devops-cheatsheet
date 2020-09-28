@@ -11,7 +11,6 @@ plugins:
         prebuild_index: false
 dev_addr: 0.0.0.0:80
 markdown_extensions:
-  - codehilite
   - admonition
   - pymdownx.arithmatex
   - pymdownx.betterem:
@@ -25,6 +24,7 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.highlight
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
