@@ -88,3 +88,16 @@ abaf23202d58        4 months            Up 33 hours               kube-controlle
 c77542fba600        4 months            Created                   service-sidekick
 87f23acc8622        4 months            Exited (0) 3 days ago     share-mnt
 ```
+
+## Image digests
+
+### Single image
+
+``` tab="Command"
+docker image inspect --format='{{index .RepoDigests 0}}' alpine
+```
+
+```bash tab="Output"
+Tomass-MacBook-Air:~ Tomas$ docker image inspect --format='{{index .RepoDigests 0}}' alpine
+alpine@sha256:185518070891758909c9f839cf4ca393ee977ac378609f700f60a771a2dfe321
+```
