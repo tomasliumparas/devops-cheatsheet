@@ -1,9 +1,13 @@
 ## Example entry
 
-``` tab="Command"
-echo Hello
-```
+=== "Command"
 
-```bash tab="Output"
-Hello
-```
+    ```bash
+    echo Hello
+    ```
+
+=== "Output"
+
+    ```bash
+    Hello
+    ```

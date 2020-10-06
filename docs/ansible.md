@@ -1,86 +1,96 @@
 ## Role tasks template
 
-```yaml tab="defaults/main.yml"
-os_packages: []
-pip_packages: []
-```
+=== "defaults/main.yml"
 
-```yaml tab="tasks/main.yml"
----
-# tasks file for example
+    ```yaml
+    os_packages: []
+    pip_packages: []
+    ```
 
-- name: Example prerequisites
-  include: prerequisites.yml
-  tags:
-    - example
-    - prerequisites
+=== "tasks/main.yml"
 
-- name: Example installation
-  include: installation.yml
-  tags:
-    - example
-    - installation
+    ```yaml
+    ---
+    # tasks file for example
 
-- name: Example volume management
-  include: volumes.yml
-  tags:
-    - example
-    - volumes
+    - name: Example prerequisites
+      include: prerequisites.yml
+      tags:
+        - example
+        - prerequisites
 
-# CAUTION - Will REMOVE changes made and data
-- name: Example uninstallation
-  include: uninstallation.yml
-  tags:
-    - example
-    - uninstallation
-  when: uninstall_role|default(false)
-```
+    - name: Example installation
+      include: installation.yml
+      tags:
+        - example
+        - installation
 
-```yaml tab="prerequisites.yml"
----
-# tasks file for example 
+    - name: Example volume management
+      include: volumes.yml
+      tags:
+        - example
+        - volumes
 
-- name: Install additional OS packages
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ os_packages }}"
-  loop_control:
-    label: "PACKAGE: {{ item }}"
+    # CAUTION - Will REMOVE changes made and data
+    - name: Example uninstallation
+      include: uninstallation.yml
+      tags:
+        - example
+        - uninstallation
+      when: uninstall_role|default(false)
+    ```
 
-- name: Install additional pip packages
-  pip:
-    name: "{{ pip_packages }}"
-    state: latest
-```
+=== "prerequisites.yml"
+
+    ```yaml
+    ---
+    # tasks file for example
+
+    - name: Install additional OS packages
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ os_packages }}"
+      loop_control:
+        label: "PACKAGE: {{ item }}"
+
+    - name: Install additional pip packages
+      pip:
+        name: "{{ pip_packages }}"
+        state: latest
+    ```
 
 ## Reject items w\ empty key in the list
 
-```yaml tab="Snippet"
-rejectattr('nodes', 'none')
-```
+=== "Snippet"
 
-```yaml tab="Task"
-- name: Filter empty
-  set_fact:
-    clusters: "{{ clusterList | rejectattr('nodes', 'none') | list }}"
-  delegate_to: localhost
-  vars:
-    clusters:
-      - cluster: cl1
-        nodes: null
-      - cluster: cl2
-        nodes:
-          - node1
-          - node2
-          - node3
-```
+    ```yaml
+    rejectattr('nodes', 'none')
+    ```
+
+=== "Task"
+
+    ```yaml
+    - name: Filter empty
+      set_fact:
+        clusters: "{{ clusterList | rejectattr('nodes', 'none') | list }}"
+      delegate_to: localhost
+      vars:
+        clusters:
+          - cluster: cl1
+            nodes: null
+          - cluster: cl2
+            nodes:
+              - node1
+              - node2
+              - node3
+    ```
 
 ## Special tags never
 
-```yaml tab="Task"
-- debug: msg='{{ showmevar}}'
-  tags: [ 'never', 'debug' ]
-```
+=== "Task"
 
-
+    ```yaml
+    - debug: msg='{{ showmevar}}'
+      tags: [ 'never', 'debug' ]
+    ```
