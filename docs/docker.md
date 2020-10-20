@@ -117,3 +117,20 @@
     Tomass-MacBook-Air:~ Tomas$ docker image inspect --format='{{index .RepoDigests 0}}' alpine
     alpine@sha256:185518070891758909c9f839cf4ca393ee977ac378609f700f60a771a2dfe321
     ```
+    
+## Grepping logs
+
+=== "Command"
+
+    ```
+    docker logs homeassistant 2>&1 | grep "Error executing query"
+    ```
+
+=== "Output"
+
+    ```bash
+    2020-10-20 15:27:22 ERROR (Recorder) [homeassistant.components.recorder] Error executing query: New instance <Events at 0x7fae7b7500d0> with identity key (<class 'homeassistant.components.recorder.models.Events'>, (228992,), None) conflicts with persistent instance <Events at 0x7fae76dcd070>
+    2020-10-20 15:27:27 ERROR (Recorder) [homeassistant.components.recorder] Error executing query: New instance <Events at 0x7fae7b7500d0> with identity key (<class 'homeassistant.components.recorder.models.Events'>, (228992,), None) conflicts with persistent instance <Events at 0x7fae76dcd070>
+    2020-10-20 15:27:32 ERROR (Recorder) [homeassistant.components.recorder] Error executing query: New instance <Events at 0x7fae7b7500d0> with identity key (<class 'homeassistant.components.recorder.models.Events'>, (228992,), None) conflicts with persistent instance <Events at 0x7fae76dcd070>
+    2020-10-20 15:27:37 ERROR (Recorder) [homeassistant.components.recorder] Error executing query: New instance <Events at 0x7fae7b7500d0> with identity key (<class 'homeassistant.components.recorder.models.Events'>, (228992,), None) conflicts with persistent instance <Events at 0x7fae76dcd070>
+    ```
