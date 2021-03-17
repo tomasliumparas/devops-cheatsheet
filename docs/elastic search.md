@@ -165,3 +165,20 @@
     ```bash
     GET _cat/shards?h=index,shard,prirep,state,node,unassigned.reason&v&s=state
     ```
+
+
+## Maintenance
+
+### Clear cache
+
+=== "curl"
+    ```
+    curl -XPOST localhost:9200/_cache/clear
+    ```
+
+=== "console"
+    ```bash
+    POST _cache/clear
+    ```
+    
+
