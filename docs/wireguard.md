@@ -47,6 +47,7 @@
     ```
     
 ### Wireguard rules
+Forward rules
 === "Command"
 
     ```bash
@@ -54,7 +55,14 @@
     iptables -I FORWARD 1 -i wg0 -o eth0 -j ACCEPT
     ```    
     
+Masquerade rules
+=== "Command"
+
+    ```bash
+    iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
+    ```    
     
+Persistint rules:    
 === "Command"
 
     ```bash
