@@ -4,8 +4,8 @@
 
     ```bash
     apt update
-    apt upgrade
-    apt install wireguard
+    apt upgrade -y
+    apt install -y wireguard
     ```
 
 ## Setup Docker
@@ -14,7 +14,7 @@
 
     ```bash
     apt-get remove docker docker-engine docker.io containerd runc
-    apt-get install \
+    apt-get install -y \
       apt-transport-https \
       ca-certificates \
       curl \
@@ -24,7 +24,7 @@
     echo   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
       $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     apt-get update
-    apt-get install docker-ce docker-ce-cli containerd.io
+    apt-get install -y docker-ce docker-ce-cli containerd.io
     ```
 
 ## Setup Docker compose
@@ -54,13 +54,15 @@
     iptables -I FORWARD 1 -i wg0 -o eth0 -j ACCEPT
     ```    
     
+    
 === "Command"
 
     ```bash
-    apt install iptables-persistent
+    apt install -y iptables-persistent
     ```
     
 ## Setup Wirefuard UI    
+Create project directory:
 === "Command"
 
     ```bash
@@ -68,6 +70,7 @@
     cd /opt/wg-gen-web
     ```
     
+Docker compose file:    
 === "/opt/wg-gen/web/docker-compose.yml"
 
     ```yaml
@@ -103,9 +106,9 @@
           - NET_ADMIN
         network_mode: "host"
         command: wg-api --device wg0 --listen 172.17.0.1:8182
-
     ```
-        
+
+Start docker-compose project:
 === "Command"
 
     ```bash
