@@ -122,3 +122,25 @@ Start docker-compose project:
     ```bash
     docker-compose up -d
     ```
+    
+## Dnsmasq
+
+```
+domain-needed
+bogus-priv
+
+# Hosts file
+domain=domain.local
+expand-hosts
+
+# Local domains
+local=/domain.local/
+
+listen-address=127.0.0.1,10.9.0.254
+bind-interfaces
+
+# Forward servers
+server=10.134.0.2
+
+#address=/paas.domain.local/10.66.0.30
+```
