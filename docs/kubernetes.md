@@ -23,8 +23,8 @@
 
 === "Command"
     ```bash
-    kubectl get secret name-of-secret -o go-template='
-    {{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'  
+    kubectl -o go-template='
+    {{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}' get secret <name> 
     ```
 
 === "Output"
