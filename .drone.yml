@@ -4,7 +4,7 @@ name: build
 
 steps:
 - name: sync
-  image: minio/mc
+  image: getais/drone-plugin-mkdocs:0.1.0
   environment:
     S3_ACCESS_KEY:
       from_secret: HC_S3_PUBLIC_STATIC_ACCESS_KEY 
